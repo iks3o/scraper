@@ -64,7 +64,7 @@ for page in range(1, pagenumber + 1):
     print(f"Pobieram stronę numer: {page} z {pagenumber} dla adresu: {baza_url}")
 
     
-    url = f"{baza_url}?page={page}&search%5Bdist%5D=30&search%5Bfilter_enum_type%5D%5B0%5D=dzialki-budowlane"
+    url = f"{baza_url}?page={page}&search%5Bdist%5D=30&search%5Bfilter_float_m%3Afrom%5D=1000&search%5Bfilter_float_m%3Ato%5D=2000"
 
     zupka = scraping(url)
     divelements = getplot(zupka)

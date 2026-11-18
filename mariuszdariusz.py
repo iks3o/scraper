@@ -1,6 +1,15 @@
+import os
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
+
+citya = os.getenv("citya", "no-city")
+cityb = os.getenv("cityb", "no-city")
+cityc = os.getenv("cityc", "no-city")
+sitename = os.getenv("sitename", "no-site")
 
 default_args = {
     'owner': 'martynka',
@@ -9,7 +18,7 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-#jfjfjfj
+
 
 with DAG(
     'olx_dariusz',
@@ -17,23 +26,23 @@ with DAG(
     schedule_interval='0 1 * * *',
     catchup=False, 
 ) as dag_dariusz:
-    
+   
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/citya/" 10'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 10'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityb/" 10'
+        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 10'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityc/" 10'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 10'
     )
     task_citya >> task_cityb >> task_cityc
 
 
-#ddhdh
+
 with DAG(
     'olx_mariusz',
     default_args=default_args,
@@ -43,14 +52,14 @@ with DAG(
 
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/citya/" 3'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 3'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityb/" 3'
+        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 3'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityc/" 3'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 3'
     )
     task_citya >> task_cityb >> task_cityc
