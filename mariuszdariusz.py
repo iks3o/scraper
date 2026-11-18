@@ -21,7 +21,7 @@ default_args = {
 
 
 with DAG(
-    'olx_dariusz',
+    'dariusz',
     default_args=default_args,
     schedule_interval='0 1 * * *',
     catchup=False, 
@@ -44,7 +44,7 @@ with DAG(
 
 
 with DAG(
-    'olx_mariusz',
+    'mariusz',
     default_args=default_args,
     schedule_interval='0 6 * * *',
     catchup=False, 
