@@ -7,11 +7,11 @@ Zautomatyzowany pipeline do cyklicznego pobierania ogłoszeń nieruchomości i z
 Infrastruktura zarządzana jest przez `docker-compose.yaml` i składa się z czterech usług:
 
 * **`airflow-webserver`** – panel webowy Airflow (port `8080`).
-* **`airflow-scheduler`** – harmonogram uruchamiający DAG-i (`dariusz` o `01:00 UTC`, `mariusz` o `06:00 UTC`).
+* **`airflow-scheduler`** – harmonogram uruchamiający DAG-i
 * **`postgres`** – wewnętrzna baza danych na potrzeby metadanych Airflowa (niewystawiona na zewnątrz).
 * **`db`** – dedykowana baza PostgreSQL przechowująca zebrane ogłoszenia (port `5432`, trwały wolumen `pgdata`).
 
-> **Uwaga dotycząca czasu:** Airflow domyślnie pracuje w strefie czasowej **UTC** (zimą -1h, latem -2h względem czasu polskiego).
+
 
 ## Struktura plików
 
