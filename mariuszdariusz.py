@@ -9,6 +9,8 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
+#jfjfjfj
+
 with DAG(
     'olx_dariusz',
     default_args=default_args,
@@ -18,18 +20,20 @@ with DAG(
     
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/citya/" 10'
+        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/citya/" 10'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/cityb/" 10'
+        bash_command = 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityb/" 10'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/cityc/" 10'
+        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityc/" 10'
     )
     task_citya >> task_cityb >> task_cityc
 
+
+#ddhdh
 with DAG(
     'olx_mariusz',
     default_args=default_args,
@@ -39,14 +43,14 @@ with DAG(
 
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/citya/" 3'
+        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/citya/" 3'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/cityb/" 3'
+        bash_command = 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityb/" 3'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= 'python3 /opt/airflow/scripts/scraper_olx.py "https://www.olx.pl/nieruchomosci/dzialki/cityc/" 3'
+        bash_command= 'python3 /opt/airflow/scripts/scraper.py "https://www.popularnastronazdzialkami.pl/nieruchomosci/dzialki/cityc/" 3'
     )
     task_citya >> task_cityb >> task_cityc
