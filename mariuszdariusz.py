@@ -23,7 +23,7 @@ default_args = {
 with DAG(
     'dariusz',
     default_args=default_args,
-    schedule_interval='0 0 * * *',
+    schedule_interval='0 2 * * *',
     catchup=False, 
 ) as dag_dariusz:
    
@@ -46,7 +46,7 @@ with DAG(
 with DAG(
     'mariusz',
     default_args=default_args,
-    schedule_interval='0 5 * * *',
+    schedule_interval='0 7 * * *',
     catchup=False, 
 ) as dag_mariusz:
 
