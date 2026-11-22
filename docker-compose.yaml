@@ -13,6 +13,7 @@ x-airflow-common:
     - _PIP_ADDITIONAL_REQUIREMENTS=requests beautifulsoup4 python-dotenv
   volumes:
     - ./mariuszdariusz.py:/opt/airflow/dags/mariuszdariusz.py
+    - ./dailyraport.py:/opt/airflow/dags/dailyraport.py
     - ./scraper.py:/opt/airflow/scripts/scraper.py
 
 services:
