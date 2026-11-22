@@ -88,7 +88,9 @@ def send_raport():
 	msg["From"] = sender
 	msg["To"] = receiver
 	msg.set_content(
-	    f" aaaa"
+        f"Witaj królowo, uniżony sługa przedstawia poranny raport z Twojego serwera:\n\n"
+        f"Status botów:\n{dag_raport}\n\n"
+        f"Baza danych:\n{db_raport}\n"
 )
 
 with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
