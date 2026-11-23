@@ -23,21 +23,21 @@ default_args = {
 with DAG(
     'dariusz',
     default_args=default_args,
-    schedule_interval='0 2 * * *',
+    schedule_interval='0 1 * * *',
     catchup=False, 
 ) as dag_dariusz:
    
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 10'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 10 "{citya}"'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 10'
+        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 10 "{cityb}"'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 10'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 10 "{cityc}"'
     )
     task_citya >> task_cityb >> task_cityc
 
@@ -46,20 +46,20 @@ with DAG(
 with DAG(
     'mariusz',
     default_args=default_args,
-    schedule_interval='0 7 * * *',
+    schedule_interval='0 6 * * *',
     catchup=False, 
 ) as dag_mariusz:
 
     task_citya = BashOperator(
         task_id='citya',
-        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 3'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{citya}/" 3 "{citya}"'
     )
     task_cityb = BashOperator(
         task_id='getcityb',
-        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 3'
+        bash_command = f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityb}/" 3 "{cityb}"'
     )
     task_cityc = BashOperator(
         task_id='getcityc',
-        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 3'
+        bash_command= f'python3 /opt/airflow/scripts/scraper.py "https://www.{sitename}.pl/nieruchomosci/dzialki/sprzedaz/{cityc}/" 3 "{cityc}"'
     )
     task_citya >> task_cityb >> task_cityc

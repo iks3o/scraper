@@ -120,7 +120,7 @@ with DAG(
     dag_id="daily_raport",
     default_args=default_args,
     start_date=datetime(2026, 4, 10),
-    schedule="0 9 * * *", 
+    schedule="0 8 * * *", 
     catchup=False,
 ) as dag:
 
