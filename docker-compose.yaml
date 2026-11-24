@@ -10,9 +10,9 @@ x-airflow-common:
     - AIRFLOW__WEBSERVER__SECRET_KEY=${airflowkey}
     - _PIP_ADDITIONAL_REQUIREMENTS=requests beautifulsoup4 python-dotenv
   volumes:
-    - ./mariuszdariusz.py:/opt/airflow/dags/mariuszdariusz.py
-    - ./dailyraport.py:/opt/airflow/dags/dailyraport.py
+    - ./DAG:/opt/airflow/dags
     - ./scraper.py:/opt/airflow/scripts/scraper.py
+    - ./details-scraper.py:/opt/airflow/scripts/details_scraper.py
 
 services:
   postgres:
