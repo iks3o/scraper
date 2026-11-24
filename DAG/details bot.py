@@ -21,6 +21,6 @@ with DAG(
 
     fetch_details = BashOperator(
         task_id="fetch_offer_details",
-               bash_command="python3 /opt/airflow/scripts/details_scraper.py --limit 50",
+               bash_command="python3 /opt/airflow/scripts/details_scraper.py --limit 5",
         execution_timeout=timedelta(minutes=45),
     )
