@@ -73,7 +73,7 @@ def _clean_otodom_val(val: str) -> str:
     if text == "n":
         return "nie"
     return text
-
+#
 
 def parse_otodom(soup: BeautifulSoup) -> str:
     next_data_tag = soup.find("script", id="__NEXT_DATA__")
