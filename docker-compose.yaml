@@ -17,6 +17,7 @@ x-airflow-common:
 services:
   postgres:
     image: postgres:13
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=airflow
       - POSTGRES_PASSWORD=airflow
