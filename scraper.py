@@ -10,13 +10,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-if len(sys.argv) < 2:
+if len(sys.argv) < 4:
     print("Podaj link i liczbę stron!!!")
-    sys.exit()
+    sys.exit(1)
 
 
 baza_url = sys.argv[1] 
 pagenumber = int(sys.argv[2])
+city = sys.argv[3]
 
 #tak jestem czlowiekiem! :)
 headers = {
@@ -99,13 +100,21 @@ try:
             price TEXT,
             location_date TEXT,
             size_and_ppm TEXT,
+            city TEXT,
             scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
+    cur.execute("""
+        ALTER TABLE real_estate
+        ADD COLUMN IF NOT EXISTS city TEXT;
+    """)
+
     insert_query = """
-        INSERT INTO real_estate (link, title, price, location_date, size_and_ppm)
-        VALUES (%s, %s, %s, %s, %s)
-        ON CONFLICT (link) DO NOTHING;
+        INSERT INTO real_estate (link, title, price, location_date, size_and_ppm, city)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        ON CONFLICT (link) DO UPDATE
+        SET city = EXCLUDED.city
+        WHERE real_estate.city IS NULL;
     """
 
     for item in allplots:
@@ -114,7 +123,8 @@ try:
             item.get('title'),
             item.get('price'),
             item.get('locationdate'),
-            item.get('sizeandppm')
+            item.get('sizeandppm'),
+            city
         ))
 
     conn.commit()
